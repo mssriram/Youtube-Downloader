@@ -1,0 +1,144 @@
+body {
+  margin: 0;
+  font-family: 'PT Sans', sans-serif;
+  background: #16191b;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  color: white;
+  overflow: hidden;
+}
+
+.header{
+  font-family: 'Laila', sans-serif;
+  font-size: 2rem;
+  background-color: #202020;
+  display: inline-block;
+  width: 100%;
+  min-height: 6rem;
+  position: relative;
+}
+
+.header-right{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  padding: 0 1%;
+
+}
+
+.header-right > * {
+  margin: 0 3.5% 0 3.5%;
+  font-size: 25px;
+  font-weight: lighter;
+  border-radius: 10px;
+  padding: 3px 5px;
+}
+
+.header-right > *:hover{
+  background-color: #363636;
+  color: #ef3f5a;
+}
+
+a{
+  color: #d9d9d9;
+  text-decoration: none;
+}
+
+.logo{
+  height: 100%;
+  display: flex;
+  position: absolute;
+  font-weight: bolder;
+  font-size: 50px;
+  float: left;
+  align-items: center;
+  margin: 0 0 0 2%;
+}
+
+.logo:hover{
+  color: #d4112e;
+}
+
+.yt-box{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  margin: 2% 21%;
+  padding: 0 2rem;
+  min-height: 500px;
+  background-color: #303030;
+  border-radius: 2.5rem;
+  color: white
+}
+
+.video-name{
+  width: 100%;
+  padding: 2rem 2rem;
+  margin: 0 0 2% 0;
+  text-align: center;  
+  font-size: 30px; 
+  background-color: #3d3d3d;
+  border-radius: 2.5rem;
+}
+
+.image{
+  height: 40%;
+  width: 50%;
+  min-height: 174px;
+  min-width: 300px;
+  border: 3px solid #b6b6b6;
+  border-radius: 10px;
+  margin: 2% 0 1% 0;
+}
+
+.button{
+  background: #ef3f5a;
+  border: 1px solid white;
+  border-radius: 0;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.download_button{
+  margin: 2rem 0 2rem 2rem;
+  padding: 1% 2%;
+  border-radius: 10px;
+}
+
+.yt-box input[type="submit"]:hover {
+  background: #d73851;
+}
+
+.quality_selector{
+  background: rgb(255, 125, 125);
+  border: none;
+  padding: 1% 0 1% 1%;
+  width: 11rem;
+}
+
+.quality_selector > *{
+  background: rgb(255, 125, 125);
+}
+
+.quality_selector:focus{
+  outline: none;
+}
+
+.download{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 8rem;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+<head>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Laila:wght@300&family=PT+Sans&display=swap" rel="stylesheet"> 
+  <link rel="stylesheet" href="css/search_styles.css">        
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Title</title>
+</head>
+
+
+<body>
+  <div class="header">
+      <a href="/" class="logo">YT-DL</a>
+      <div class="header-right">
+        <a href="/">Home</a>
+        <a href="/<%=data.link%>">Contact</a>
+        <a href="#about">About</a>
+      </div>
+  </div>
+
+<div class= yt-box>
+  <div class="video-name"><%=data.title%></div>
+  <img class="image" src=<%=data.image %>>
+  <div id="download" class="download">
+    <!-- <input class="quality_selector" id="qualityselector" type="submit" value="select"> -->
+    <select class="quality_selector button" id="qualityselector">
+      <!-- <option value="<%=data.formats[0].itag%>">360p mp4(<%= data.formats[0].size %> Mb)</option>
+      <option value="<%=data.formats[1].itag%>">720p mp4(<%= data.formats[1].size %> Mb)</option>
+       -->
+    </select>
+    <input class="download_button button" id="downloadButton" type="submit" value="Download">  
+  </div>
+</div>
+
+<script id="yt-download" src="/client/search.js" var data='<%- JSON.stringify(data) %>'></script>
+</body>
