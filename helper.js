@@ -10,13 +10,6 @@ const resolutions = [
     [137, 299, 399]
 ]
 
-// tracker to keep track of downloaded file.
-const tracker = {
-    start: Date.now(),
-    downloaded: 0,
-    total: Infinity,
-}
-
 // take bitrate and length of video in milliseconds as input and return the size of video in Mb.
 function getSize(bitrate, length){
     const size = ((bitrate * 0.000000125 * length)/1000).toFixed(1);
@@ -44,7 +37,7 @@ function chooseAudioQuality(formats){
     return audioFormats[audioFormats.length - 1]
 }
 
-// create sizeArray to send to html page to display available formats. creates 3 available formats: 360p, 720p, 1080p
+// create sizeArray for available formats. creates 3 available formats: 360p, 720p, 1080p
 function createSizeArray(allFormats){
     const videoSize = [];
     var j = 0;
@@ -71,6 +64,24 @@ function createSizeArray(allFormats){
         ++i;
     }
     return videoSize
+}
+
+// create array to be sent to html page search.js to display available download formats.
+function createDataArray(link, info){
+    const allFormats = info.formats;
+
+    const filteredFormats = allFormats.filter(chooseVideoQuality);
+    
+    const videoSize = createSizeArray(filteredFormats);
+
+    const data = {
+        image: info.videoDetails.thumbnails[info.videoDetails.thumbnails.length - 1].url, 
+        title: info.videoDetails.title,
+        formats: videoSize,
+        link: link,
+    }
+
+    return data;
 }
 
 // takes seperate audio and video streams and merges them together
@@ -171,4 +182,4 @@ async function mergeVideoAudio(ref){
     video.pipe(ffmpegProcess.stdio[5]);
 }
 
-module.exports = {chooseVideoQuality, createSizeArray, mergeVideoAudio, chooseAudioQuality};
+module.exports = {mergeVideoAudio, createDataArray};

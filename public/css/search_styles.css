@@ -122,8 +122,9 @@ a{
 .quality_selector{
   background: rgb(255, 125, 125);
   border: none;
-  padding: 1% 0 1% 1%;
-  width: 11rem;
+  border-radius: 10px;
+  padding: 1%;
+  width: 13rem;
 }
 
 .quality_selector > *{

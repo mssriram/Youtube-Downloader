@@ -1,7 +1,6 @@
-const {chooseVideoQuality, createSizeArray, mergeVideoAudio, chooseAudioQuality} = require('./helper.js')
+const {mergeVideoAudio, createDataArray} = require('./helper.js')
 const express = require('express');
 const ytdl = require('ytdl-core')
-const fs = require('fs');
 
 const app = express()
 app.use(express.urlencoded({extended:true}));
@@ -16,20 +15,10 @@ app.get('/', (req, res) => {
 
 app.post('/done', async (req, res) => {
     const link = req.body.search;
-    const info = await ytdl.getBasicInfo(req.body.search);
-
-    const allFormats = info.formats;
-
-    const filteredFormats = allFormats.filter(chooseVideoQuality);
+    const info = await ytdl.getBasicInfo(link);
+    // const allFormats = info.formats;
     
-    const videoSize = createSizeArray(filteredFormats);
-
-    const data = {
-        image: info.videoDetails.thumbnails[info.videoDetails.thumbnails.length - 1].url, 
-        title: info.videoDetails.title,
-        formats: videoSize,
-        link: link,
-    }
+    const data = createDataArray(link, info);
 
     // res.send(video.info)
     // res.send(allFormats);

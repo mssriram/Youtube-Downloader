@@ -6,7 +6,6 @@ const button = document.getElementById('downloadButton');
 const download = document.getElementById('download');
 var dropdown = document.getElementById('qualityselector')
 
-
 console.log(data.formats)
 
 for (let i = 0; i < data.formats.length; i++) {
@@ -27,16 +26,6 @@ for (let i = 0; i < data.formats.length; i++) {
     dropdown.add(newOption, undefined)
 }
 
-
-// data.formats.forEach((value, index) => {
-//     let itag = value.itag;
-//     let size = value.size;
-//     let str = String(itag) + ' : ' + String(size)
-
-//     let newOption = new Option(str, itag)
-//     dropdown.add(newOption, undefined)
-// })
-
 const options = {
     method: 'POST',
     body: {}, 
@@ -44,8 +33,6 @@ const options = {
         'Content-Type': 'application/json'
     }
 }
-
-
 
 button.onclick = function(event){
     event.preventDefault();
