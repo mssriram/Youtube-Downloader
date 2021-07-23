@@ -1,4 +1,4 @@
-const {lower_res, higher_res, video, tracker, getSize, chooseVideoQuality, createSizeArray, mergeVideoAudio, chooseAudioQuality} = require('./helper.js')
+const {chooseVideoQuality, createSizeArray, mergeVideoAudio, chooseAudioQuality} = require('./helper.js')
 const express = require('express');
 const ytdl = require('ytdl-core')
 const fs = require('fs');

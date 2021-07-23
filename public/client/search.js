@@ -14,13 +14,13 @@ for (let i = 0; i < data.formats.length; i++) {
     let size = data.formats[i].size;
     let str = ''
     if(i == 0){
-        str = '360p mp4: ' + String(size) + ' Mb (' + String(itag) + ')';
+        str = '360p mp4: ' + String(size) + ' (' + String(itag) + ')';
     }
     else if(i == 1){
-        str = '720p mp4: ' + String(size) + ' Mb (' + String(itag) + ')';
+        str = '720p mp4: ' + String(size) + ' (' + String(itag) + ')';
     }
     else if(i == 2){
-        str = '1080p mp4: ' + String(size) + ' Mb (' + String(itag) + ')';
+        str = '1080p mp4: ' + String(size) + ' (' + String(itag) + ')';
     }
 
     let newOption = new Option(str, itag);

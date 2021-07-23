@@ -3,37 +3,38 @@ const cp = require('child_process');
 const readline = require('readline');
 const ffmpeg = require('ffmpeg-static');
 
-const lower_res = [18, 22];
-const higher_res = [137,299];
-
+// compare with itag array given below to select resolution. 1st row is 360p, 2nd is 720p, 3rd is 1080p. 
 const resolutions = [
     [18, 134, 396],
     [22, 136, 298, 398],
     [137, 299, 399]
 ]
 
+// tracker to keep track of downloaded file.
 const tracker = {
     start: Date.now(),
     downloaded: 0,
     total: Infinity,
 }
 
-const video = {
-    info: null,
-    link: null,
-} 
-
+// take bitrate and length of video in milliseconds as input and return the size of video in Mb.
 function getSize(bitrate, length){
     const size = ((bitrate * 0.000000125 * length)/1000).toFixed(1);
-    return size
+    if (size < 1){
+        return String(size * 1000) + ' Kb'
+    }
+    else
+        return String(size) + ' Mb'
 };
 
+// take all available formats as input and only return video mp4 format as output
 function chooseVideoQuality(format){
     if ( format.mimeType.includes('video/mp4')){
         return format
     }
 }
 
+// take all available formats as input and filter only audio formats and return highest available audio quality format 
 function chooseAudioQuality(formats){
     const audioFormats = formats.filter( (format) => {
         if ( format.mimeType.includes('audio/mp4')){
@@ -43,11 +44,13 @@ function chooseAudioQuality(formats){
     return audioFormats[audioFormats.length - 1]
 }
 
+// create sizeArray to send to html page to display available formats. creates 3 available formats: 360p, 720p, 1080p
 function createSizeArray(allFormats){
     const videoSize = [];
     var j = 0;
     var i = 0;
 
+    // compares given itag with the array resolutions and returns itag if it is present in the array.
     while(i < allFormats.length) {
         if (resolutions[j].includes(allFormats[i].itag)){
             const video = allFormats[i];
@@ -59,7 +62,6 @@ function createSizeArray(allFormats){
                 size: getSize(bitrate, length)
             };
             videoSize.push(size);
-
             ++j;
         }
 
@@ -71,6 +73,7 @@ function createSizeArray(allFormats){
     return videoSize
 }
 
+// takes seperate audio and video streams and merges them together
 async function mergeVideoAudio(ref){
     const tracker = {
     start: Date.now(),
@@ -84,10 +87,13 @@ async function mergeVideoAudio(ref){
     audio_quality = chooseAudioQuality(info.formats)
     console.log(audio_quality.itag)
 
+    // get audio stream using selected format
     const audio = ytdl(ref.link, { quality: audio_quality.itag })
     .on('progress', (_, downloaded, total) => {
         tracker.audio = { downloaded, total };
     });
+
+    // get video stream using selected format
     const video = ytdl(ref.link, { quality: ref.itag})
     .on('progress', (_, downloaded, total) => {
         tracker.video = { downloaded, total };
@@ -165,4 +171,4 @@ async function mergeVideoAudio(ref){
     video.pipe(ffmpegProcess.stdio[5]);
 }
 
-module.exports = {lower_res, higher_res, video, tracker, getSize, chooseVideoQuality, createSizeArray, mergeVideoAudio, chooseAudioQuality};
+module.exports = {chooseVideoQuality, createSizeArray, mergeVideoAudio, chooseAudioQuality};
