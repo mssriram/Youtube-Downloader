@@ -1,7 +1,7 @@
 {
   "name": "first-server",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is a Youtube Downloader I made using vanilla javascript and html. Using this application, you can  \r download youtube videos in 360p, 720p and 1080p. I used the npm package ytdl-core to make this and  \r ffmpeg for handling the video and audio streams.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -17,5 +17,13 @@
     "nodemon": "^2.0.12",
     "readline": "^1.3.0",
     "ytdl-core": "^4.9.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mssriram/Youtube-Downloader.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mssriram/Youtube-Downloader/issues"
+  },
+  "homepage": "https://github.com/mssriram/Youtube-Downloader#readme"
 }
