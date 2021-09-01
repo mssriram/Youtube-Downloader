@@ -12,7 +12,6 @@ app.use(express.json());
 app.set('view engine', 'ejs')
 
 app.get('/', (req, res) => {
-    console.log('working')
     res.render('index') 
 })
 
